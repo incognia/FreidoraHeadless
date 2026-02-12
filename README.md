@@ -52,28 +52,28 @@ Esta instalación manual sobre **Fedora Server** elimina la dependencia de GDM/G
 
 Sigue los documentos en orden para replicar este entorno desde cero:
 
-### 1. [Preparación del sistema](01-System_Prep.md)
+### 1. [Preparación del sistema](docs/01-System_Prep.md)
 Configuración inicial crítica para un sistema *headless*: gestión de energía (evitar suspensión), actualizaciones y seguridad SSH.
 
-### 2. [Entorno gráfico minimalista](02-Graphical_Env.md)
+### 2. [Entorno gráfico minimalista](docs/02-Graphical_Env.md)
 Instalación manual de las «X» y el entorno gráfico.
 - `i3` + `i3blocks`
 - Fuentes (Nerd Fonts) y temas (Dracula)
 - Utilidades base (Thunar, xfce4-terminal)
 
-### 3. [Acceso remoto (RDP)](03-RDP.md)
+### 3. [Acceso remoto (RDP)](docs/03-RDP.md)
 Configuración de `xrdp` para permitir una experiencia fluida desde macOS.
 - *Fixes* para teclado Mac.
 - *Workarounds* para *wallpapers*.
 - Gestión de sesiones.
 
-### 4. [Configuración y *vibe*](04-Configuration.md)
+### 4. [Configuración y *vibe*](docs/04-Configuration.md)
 El «mojo» del sistema. Personalización visual y funcional.
 - ***Shell*:** Zsh + Oh My Zsh + Powerlevel10k.
 - **IDE:** instalación y configuración de Antigravity.
 - **Estética:** tema Dracula global.
 
-### 5. [Mantenimiento](05-Maintenance.md)
+### 5. [Mantenimiento](docs/05-Maintenance.md)
 *Cheat sheet* de comandos y referencia rápida para el día a día.
 
 ## 🛠 *Stack* tecnológico
@@ -88,6 +88,6 @@ El «mojo» del sistema. Personalización visual y funcional.
 
 ---
 
-*Este proyecto fue elaborado por Rodrigo Álvarez (@incognia) y se distribuye bajo la licencia GPLv3. Para más detalles, consulta el archivo LICENSE.*
+*Este proyecto fue elaborado por Rodrigo Álvarez (@incognia) y se distribuye bajo la licencia GPLv3. Para más detalles, consulta el archivo [LICENSE](LICENSE).*
 
 *Copyright © 2026, Rodrigo Ernesto Álvarez Aguilera. Este es software libre bajo los términos de la GNU General Public License v3.*

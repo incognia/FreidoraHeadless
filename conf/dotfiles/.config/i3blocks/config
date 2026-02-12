@@ -1,0 +1,83 @@
+[time]
+command=date "+%Y-%m-%d %H:%M:%S"
+interval=1
+separator=false
+
+[sp1]
+full_text= 
+separator=false
+interval=once
+
+[ip_local]
+command=hostname -I | awk '{print " " $1}'
+interval=60
+separator=false
+
+[sp2]
+full_text= 
+separator=false
+interval=once
+
+[ip_public]
+command=curl -4 -s ifconfig.me | xargs -I{} echo " {}"
+interval=300
+separator=false
+
+[sp3]
+full_text= 
+separator=false
+interval=once
+
+[warp]
+full_text= Warp
+command=setsid warp-terminal >/dev/null 2>&1
+interval=0
+separator=false
+
+[sp4]
+full_text= 
+separator=false
+interval=once
+
+[antigravity]
+full_text= Antigravity
+command=setsid antigravity >/dev/null 2>&1
+interval=0
+separator=false
+
+[sp4a]
+full_text= 
+separator=false
+interval=once
+
+[taskmanager]
+full_text= Tasks
+command=setsid xfce4-taskmanager >/dev/null 2>&1
+interval=0
+separator=false
+
+[sp4b]
+full_text= 
+separator=false
+interval=once
+
+[user]
+command=echo " $USER"
+interval=once
+separator=false
+
+[sp5]
+full_text= 
+separator=false
+interval=once
+
+[disconnect]
+full_text=
+command=pkill -u $USER Xvnc
+color=#FF6666
+separator=false
+
+[spacer]
+full_text= 
+separator=false
+interval=once
