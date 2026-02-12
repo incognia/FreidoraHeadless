@@ -2,7 +2,7 @@
 # Requisitos: ejecutar en la raíz del repo FreidoraHeadless
 
 REPO_ROOT=$(pwd)
-CONF_DIR="$REPO_ROOT/conf"
+CONF_DIR="$REPO_ROOT/config"
 
 echo "🚀 Iniciando respaldo de configuración de Freidora..."
 
