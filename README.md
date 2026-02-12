@@ -24,7 +24,7 @@ El objetivo es tener un entorno de desarrollo Linux nativo que combine la estabi
 ***Hardware:***
 - **Cliente personal:** Mac mini M4 (3 monitores).
 - **Estación de trabajo:** Dell con Fedora Workstation 43.
-- **Servidor *headless*:** Fedora 43 Server (*Net Install*) en una HP Mini viejita (cariñosamente «HPiedra» o «Freidora» por lo que calienta).
+- **Servidor *headless*:** HP EliteDesk 705 G4 DM 65W (AMD Ryzen 5 PRO 2400G @ 3.60 GHz, 32GB RAM, AMD Radeon Vega 11).
 
 **Nota sobre la instalación:**
 Originalmente se intentó usar la ISO de **Fedora Server DVD** completa, descargada desde la *laptop* Dell del trabajo. Sin embargo, **Fedora Media Writer** falló 3 veces al intentar crear la USB de arranque.
