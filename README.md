@@ -85,3 +85,9 @@ El «mojo» del sistema. Personalización visual y funcional.
 | **Terminal** | Warp / xfce4 | IA integrada y *workflows* modernos. |
 | **IDE** | Antigravity | La experiencia definitiva de desarrollo asistido. |
 | **Remoto** | Microsoft RDP (Mac) | Soporte nativo multimonitor y redirección de dispositivos. |
+
+---
+
+*Este proyecto fue elaborado por Rodrigo Álvarez (@incognia) y se distribuye bajo la licencia GPLv3. Para más detalles, consulta el archivo LICENSE.*
+
+*Copyright © 2026, Rodrigo Ernesto Álvarez Aguilera. Este es software libre bajo los términos de la GNU General Public License v3.*
