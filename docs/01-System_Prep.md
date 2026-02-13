@@ -64,6 +64,59 @@ Añade la resolución local en `/etc/hosts`:
 sudo sed -i '3a127.0.0.1   TU_HOSTNAME_AQUI TU_SHORTNAME' /etc/hosts
 ```
 
+## 3.5. Configuración de red estática
+
+Para entornos sin DHCP, configura una IP estática usando NetworkManager.
+
+### Configuración actual del sistema (tsibi)
+
+**Parámetros de red:**
+- **IP:** 10.0.0.79/8
+- **Gateway:** 10.0.0.1
+- **DNS1:** 8.8.8.8 (Google DNS)
+- **DNS2:** 8.8.4.4 (Google DNS)
+- **Dominio DNS:** faraday.org.mx
+- **Interfaz:** eno1
+
+### Aplicar configuración estática
+
+```bash
+# Modificar la conexión existente a IP estática
+sudo nmcli connection modify eno1 \
+  ipv4.method manual \
+  ipv4.addresses 10.0.0.79/8 \
+  ipv4.gateway 10.0.0.1 \
+  ipv4.dns "8.8.8.8 8.8.4.4" \
+  ipv4.dns-search faraday.org.mx
+
+# Desactivar IPv6 (opcional)
+sudo nmcli connection modify eno1 ipv6.method disabled
+
+# Aplicar cambios
+sudo nmcli connection down eno1 && sudo nmcli connection up eno1
+```
+
+### Verificar configuración
+
+```bash
+# Ver configuración de la conexión
+nmcli connection show eno1 | grep ipv4
+
+# Ver estado de la interfaz
+ip addr show eno1
+ip route
+```
+
+### Revertir a DHCP (si es necesario)
+
+```bash
+sudo nmcli connection modify eno1 ipv4.method auto
+sudo nmcli connection modify eno1 ipv6.method auto
+sudo nmcli connection down eno1 && sudo nmcli connection up eno1
+```
+
+**Nota:** Después de aplicar la configuración de red estática, si el equipo se moverá físicamente, apágalo con `sudo poweroff`.
+
 ## 4. Autenticación y seguridad (SSH)
 
 Configura el acceso seguro por SSH, preferiblemente usando llaves Ed25519.
