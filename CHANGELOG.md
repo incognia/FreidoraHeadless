@@ -8,6 +8,7 @@
 - docs: agregar información de acceso RDP desde red local y externa
 - docs: agregar guía completa de instalación del tema Dracula (GTK + iconos + Qt)
 - feat: ajustar gaps de i3 a 8px con smart_gaps off
+- feat: instalar xfce4-settings para panel de configuración
 
 ## [2026-02-11] - Reorganización y configuración de backups
 - refactor: rename conf directory to config and update scripts

@@ -19,8 +19,17 @@ sudo dnf install -y i3 i3blocks feh
 Usamos `xfce4-terminal` como terminal principal y algunas utilidades ligeras de XFCE que se integran bien con i3.
 
 ```bash
-sudo dnf install -y xfce4-terminal thunar thunar-archive-plugin mousepad ristretto xfce4-taskmanager xfce4-screenshooter
+sudo dnf install -y xfce4-terminal thunar thunar-archive-plugin mousepad ristretto xfce4-taskmanager xfce4-screenshooter xfce4-settings
 ```
+
+- **xfce4-terminal**: emulador de terminal
+- **thunar**: gestor de archivos
+- **thunar-archive-plugin**: soporte para archivos comprimidos
+- **mousepad**: editor de texto simple
+- **ristretto**: visor de imágenes
+- **xfce4-taskmanager**: monitor de procesos
+- **xfce4-screenshooter**: captura de pantalla
+- **xfce4-settings**: panel de configuración (apariencia, teclado, ratón, etc.)
 
 ## 3. Instalar fuentes (Nerd Fonts)
 
