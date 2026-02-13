@@ -77,6 +77,48 @@ sudo sed -i 's/^KillDisconnected=false/KillDisconnected=true/' /etc/xrdp/sesman.
 sudo systemctl restart xrdp-sesman
 ```
 
+## 6. Acceso al sistema
+
+El sistema puede accederse de dos formas dependiendo de tu ubicación:
+
+### Desde red local (LAN)
+
+**Parámetros de conexión:**
+- **Host:** `10.0.0.79`
+- **Puerto:** `3389`
+- **Usuario:** `incognia`
+
+**Ejemplo (cliente RDP de macOS):**
+```
+rdp://10.0.0.79:3389
+```
+
+### Desde red externa (Internet)
+
+**Parámetros de conexión:**
+- **Host:** `faraday.org.mx`
+- **Puerto:** `3390` (mapeado a 3389 interno vía pfSense)
+- **Usuario:** `incognia`
+
+**Ejemplo (cliente RDP de macOS):**
+```
+rdp://faraday.org.mx:3390
+```
+
+**Nota sobre seguridad:**
+El acceso externo está protegido por:
+- Port forwarding en pfSense (3390 → 3389)
+- Firewall local (puerto 3389 abierto)
+- Autenticación de usuario en xrdp
+
+### Configuración de cliente (macOS)
+
+Para mejor experiencia con 3 monitores:
+1. Abrir Microsoft Remote Desktop
+2. Agregar PC con los parámetros correspondientes
+3. En *Display*: seleccionar "Use all monitors"
+4. En *Display*: activar "Start session in full screen"
+
 ## Siguiente paso
 
 Ahora puedes conectarte vía RDP. El entorno se verá básico hasta que apliquemos la configuración detallada en `04-Configuration.md`.
