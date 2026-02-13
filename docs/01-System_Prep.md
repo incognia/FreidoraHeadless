@@ -32,6 +32,23 @@ Todos deben mostrar `Loaded: masked`.
 systemctl status sleep.target suspend.target hibernate.target hybrid-sleep.target
 ```
 
+### Configurar sistema en modo multi-usuario (sin interfaz gráfica local)
+
+Para un sistema *headless*, no es necesario que el servidor X local inicie en el arranque. En su lugar, `xrdp` creará sesiones gráficas bajo demanda cuando los usuarios se conecten remotamente.
+
+```bash
+# Cambiar el target por defecto a multi-user (sin interfaz gráfica local)
+sudo systemctl set-default multi-user.target
+```
+
+**Verificación:**
+```bash
+systemctl get-default
+# Debe mostrar: multi-user.target
+```
+
+**Nota:** Este cambio se aplica en el siguiente reinicio. El servicio `xrdp` seguirá funcionando normalmente y creará sesiones X cuando los usuarios se conecten vía RDP.
+
 ## 3. Configuración de *hostname*
 
 Configura el nombre del equipo para identificarlo correctamente en la red.

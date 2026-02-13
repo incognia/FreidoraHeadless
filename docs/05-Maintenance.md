@@ -22,6 +22,13 @@ sudo systemctl restart xrdp
 
 # Ver estado de energía (deben estar masked)
 systemctl status sleep.target suspend.target
+
+# Verificar target del sistema (debe ser multi-user.target)
+systemctl get-default
+
+# Cambiar entre modos (si es necesario)
+sudo systemctl set-default multi-user.target  # Sin interfaz gráfica local
+sudo systemctl set-default graphical.target    # Con interfaz gráfica local
 ```
 
 ### Gestión de sesiones

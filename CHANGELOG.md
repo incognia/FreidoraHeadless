@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-02-13] - Configuración headless completa
+- feat: configurar sistema en modo multi-user (sin interfaz gráfica local)
+- docs: documentar configuración de target del sistema en 01-System_Prep.md
+- docs: agregar comandos de gestión de target en 05-Maintenance.md
+
 ## [2026-02-11] - Reorganización y configuración de backups
 - refactor: rename conf directory to config and update scripts
 - refactor: reorganize project structure and setup backup scripts
