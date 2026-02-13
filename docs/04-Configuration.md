@@ -40,10 +40,11 @@ Editar `~/.config/i3/config`:
     reemplazar `status_command i3status` por `status_command i3blocks`.
 2.  **Configurar *gaps* y bordes:**
     ```
-    gaps inner 16
-    smart_gaps on
+    gaps inner 8
+    smart_gaps off
     default_border pixel 1
     ```
+    **Nota:** `smart_gaps off` mantiene los gaps visibles incluso con ventanas maximizadas.
 3.  **Tema Dracula y fuentes:**
     asegúrate de definir la fuente: `font pango:AdwaitaMono Nerd Font 9`.
     (Para los colores completos, ver documentación del tema Dracula para i3).
