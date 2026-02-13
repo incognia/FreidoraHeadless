@@ -6,6 +6,7 @@
 - docs: agregar comandos de gestión de target en 05-Maintenance.md
 - docs: documentar configuración de red estática (10.0.0.79/8)
 - docs: agregar información de acceso RDP desde red local y externa
+- docs: agregar guía completa de instalación del tema Dracula (GTK + iconos + Qt)
 - feat: ajustar gaps de i3 a 8px con smart_gaps off
 
 ## [2026-02-11] - Reorganización y configuración de backups
