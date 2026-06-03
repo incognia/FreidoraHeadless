@@ -109,8 +109,10 @@ GTK4
 ### Instalar paquetes Qt
 
 ```bash
-sudo dnf install -y qt5ct qt6ct adwaita-qt5 adwaita-qt6
+sudo dnf install -y qt5ct qt6ct
 ```
+
+**Nota:** Los paquetes `adwaita-qt5` y `adwaita-qt6` no están disponibles en Fedora 43. Se usará el estilo Fusion en su lugar.
 
 ### Configurar Qt5ct
 
@@ -124,7 +126,7 @@ color_scheme_path=/home/incognia/.config/qt5ct/colors/Dracula.conf
 custom_palette=true
 icon_theme=Dracula
 standard_dialogs=default
-style=Adwaita-Dark
+style=Fusion
 
 [Fonts]
 fixed="Sans Serif,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
@@ -139,7 +141,7 @@ double_click_interval=400
 keyboard_scheme=2
 menus_have_icons=true
 show_shortcuts_in_context_menus=true
-stylesheets=/usr/share/qt5ct/qss/fusion-fixes.qss, /usr/share/qt5ct/qss/scrollbar-simple.qss, /usr/share/qt5ct/qss/sliders-simple.qss, /usr/share/qt5ct/qss/tooltip-simple.qss, /usr/share/qt5ct/qss/traynotification-simple.qss
+stylesheets=@Invalid()
 toolbutton_style=4
 underline_shortcut=1
 wheel_scroll_lines=3
@@ -170,7 +172,7 @@ color_scheme_path=/home/incognia/.config/qt6ct/colors/Dracula.conf
 custom_palette=true
 icon_theme=Dracula
 standard_dialogs=default
-style=Adwaita-Dark
+style=Fusion
 
 [Fonts]
 fixed="Sans Serif,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
@@ -185,7 +187,7 @@ double_click_interval=400
 keyboard_scheme=2
 menus_have_icons=true
 show_shortcuts_in_context_menus=true
-stylesheets=/usr/share/qt6ct/qss/fusion-fixes.qss, /usr/share/qt6ct/qss/scrollbar-simple.qss, /usr/share/qt6ct/qss/sliders-simple.qss, /usr/share/qt6ct/qss/tooltip-simple.qss, /usr/share/qt6ct/qss/traynotification-simple.qss
+stylesheets=@Invalid()
 toolbutton_style=4
 underline_shortcut=1
 wheel_scroll_lines=3
@@ -263,4 +265,8 @@ i3-msg restart
 
 ---
 
-**Nota:** Esta guía fue generada analizando la instalación en un sistema Debian con tema Dracula completamente configurado.
+**Notas:**
+- Esta guía fue originalmente generada analizando la instalación en un sistema Debian.
+- Actualizada y probada en Fedora 43 Server (sistema tsibi).
+- Los paquetes `adwaita-qt5` y `adwaita-qt6` no están disponibles en Fedora 43; se usa el estilo Fusion como alternativa.
+- Fecha de verificación: 2026-02-13
