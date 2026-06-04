@@ -1,6 +1,6 @@
 # Guía de instalación completa del tema Dracula
 
-Esta guía documenta cómo instalar el tema Dracula completo (GTK + iconos + Qt) en Fedora 43.
+Esta guía documenta cómo instalar el tema Dracula completo (GTK + iconos + Qt) en Fedora 44.
 
 ## 1. Instalación del tema GTK Dracula
 
@@ -112,7 +112,7 @@ GTK4
 sudo dnf install -y qt5ct qt6ct
 ```
 
-**Nota:** Los paquetes `adwaita-qt5` y `adwaita-qt6` no están disponibles en Fedora 43. Se usará el estilo Fusion en su lugar.
+**Nota:** Los paquetes `adwaita-qt5` y `adwaita-qt6` no están disponibles en Fedora 44. Se usará el estilo Fusion en su lugar.
 
 ### Configurar Qt5ct
 
@@ -267,6 +267,6 @@ i3-msg restart
 
 **Notas:**
 - Esta guía fue originalmente generada analizando la instalación en un sistema Debian.
-- Actualizada y probada en Fedora 43 Server (sistema tsibi).
-- Los paquetes `adwaita-qt5` y `adwaita-qt6` no están disponibles en Fedora 43; se usa el estilo Fusion como alternativa.
+- Actualizada y probada en Fedora 44 Server (sistema tsibi).
+- Los paquetes `adwaita-qt5` y `adwaita-qt6` no están disponibles en Fedora 44; se usa el estilo Fusion como alternativa.
 - Fecha de verificación: 2026-02-13

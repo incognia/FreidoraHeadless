@@ -2,6 +2,10 @@
 
 ## [2026-06-03] - Sincronización de wallpapers y corrección de iconos
 
+- feat: actualizar sistema de Fedora 43 a Fedora 44
+- fix: desactivar xss-lock para evitar bloqueo de pantalla en entorno headless
+- docs: actualizar referencias de Fedora 43 a 44 en README y guías
+- docs: documentar desactivación de screensaver en configuración de i3
 - feat: copiar wallpaper Dracula de Fedora desde servidor Debian (10.0.0.199)
 - fix: corregir tema de iconos GTK3/GTK4 de breeze-dark a Dracula
 

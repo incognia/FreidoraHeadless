@@ -36,6 +36,22 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo z colored-man-page
 
 Editar `~/.config/i3/config`:
 
+### Desactivar bloqueo de pantalla automático
+
+Por defecto, i3 incluye `xss-lock` que activa `i3lock` tras inactividad. En un entorno *headless* accedido por RDP, esto causa problemas de reconexión. Para desactivarlo, comentar la línea:
+
+```bash
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+```
+
+Aplicar el cambio sin reiniciar:
+
+```bash
+pkill xss-lock; i3-msg reload
+```
+
+### Configuración general
+
 1.  **Habilitar i3blocks:**
     reemplazar `status_command i3status` por `status_command i3blocks`.
 2.  **Configurar *gaps* y bordes:**

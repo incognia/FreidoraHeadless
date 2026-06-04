@@ -1,20 +1,20 @@
-# Entorno de desarrollo *headless* en Fedora 43
+# Entorno de desarrollo *headless* en Fedora 44
 
-![Fedora](https://img.shields.io/badge/Fedora-Server_43-blue?logo=fedora&logoColor=white)
+![Fedora](https://img.shields.io/badge/Fedora-Server_44-blue?logo=fedora&logoColor=white)
 ![i3wm](https://img.shields.io/badge/WM-i3-gainsboro?logo=i3&logoColor=black)
 ![Warp](https://img.shields.io/badge/Terminal-Warp-01B3B3?logo=warp&logoColor=white)
 ![Antigravity](https://img.shields.io/badge/IDE-Google_Antigravity_Pro-4285F4?logo=google&logoColor=white)
 ![RDP](https://img.shields.io/badge/Access-RDP_Mac-success)
 
-> ***Vibe coding station*:** configuración minimalista y de alto rendimiento sobre Fedora 43 Server.
+> ***Vibe coding station*:** configuración minimalista y de alto rendimiento sobre Fedora 44 Server.
 
-Este repositorio documenta la transformación de una instalación limpia de **Fedora 43 Server** en una estación de desarrollo *headless* potente, gestionada remotamente desde macOS vía RDP con soporte para múltiples monitores.
+Este repositorio documenta la transformación de una instalación limpia de **Fedora 44 Server** en una estación de desarrollo *headless* potente, gestionada remotamente desde macOS vía RDP con soporte para múltiples monitores.
 
 ## 🚀 Filosofía
 
 El objetivo es tener un entorno de desarrollo Linux nativo que combine la estabilidad de Fedora con un ritmo de desarrollo rápido (*fast-paced* pero no *bleeding edge* inestable), ideal para *vibe coding*.
 
-- **Base:** Fedora 43 Server (sin *bloatware* gráfico preinstalado).
+- **Base:** Fedora 44 Server (sin *bloatware* gráfico preinstalado).
 - **Entorno:** i3 Window Manager (instalación manual).
 - **Acceso:** RDP (xrdp) optimizado para clientes Mac y multimonitor.
 - **Herramientas:** Warp Terminal + Google Antigravity IDE.
@@ -23,7 +23,7 @@ El objetivo es tener un entorno de desarrollo Linux nativo que combine la estabi
 
 ***Hardware:***
 - **Cliente personal:** Mac mini M4 (3 monitores).
-- **Estación de trabajo:** Dell con Fedora Workstation 43.
+- **Estación de trabajo:** Dell con Fedora Workstation 44.
 - **Servidor *headless*:** HP EliteDesk 705 G4 DM 65W (AMD Ryzen 5 PRO 2400G @ 3.60 GHz, 32GB RAM, AMD Radeon Vega 11).
 
 **Nota sobre la instalación:**
@@ -80,7 +80,7 @@ El «mojo» del sistema. Personalización visual y funcional.
 
 | Componente | Elección | Razón |
 | :--- | :--- | :--- |
-| **Distro** | Fedora 43 Server | Base sólida, actualizaciones rápidas de *kernel*/paquetes. |
+| **Distro** | Fedora 44 Server | Base sólida, actualizaciones rápidas de *kernel*/paquetes. |
 | **WM** | i3 | Ligero, *tiling* perfecto para *dev*, bajo consumo en RDP. |
 | **Terminal** | Warp / xfce4 | IA integrada y *workflows* modernos. |
 | **IDE** | Antigravity | La experiencia definitiva de desarrollo asistido. |
