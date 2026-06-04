@@ -53,6 +53,9 @@ Esta instalación manual sobre **Fedora Server** elimina la dependencia de GDM/G
 - **macOS:** Microsoft Remote Desktop — 3 monitores 1080p ✔️
 - **Linux:** Remmina (Fedora 44) — *ultrawide* 32:9 @ 5120×1440 ✔️
 
+![Vista ultrawide 32:9](assets/screenshot.png)
+*Vista del entorno en display ultrawide 32:9 (5120×1440)*
+
 ## 📚 Guía de instalación
 
 Sigue los documentos en orden para replicar este entorno desde cero:
