@@ -2,6 +2,7 @@
 
 ## [2026-06-04] - Colección de wallpapers y ajustes de i3
 
+- docs: documentar clientes RDP probados (macOS 3x1080p, Remmina ultrawide 32:9)
 - feat: instalar colección completa de wallpapers Fedora (F34-F44)
 - feat: crear alias reloadbg para recargar wallpaper
 - feat: aumentar gaps de i3 de 8px a 16px

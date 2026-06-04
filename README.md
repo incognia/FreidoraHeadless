@@ -5,6 +5,7 @@
 ![Warp](https://img.shields.io/badge/Terminal-Warp-01B3B3?logo=warp&logoColor=white)
 ![Antigravity](https://img.shields.io/badge/IDE-Google_Antigravity_Pro-4285F4?logo=google&logoColor=white)
 ![RDP](https://img.shields.io/badge/Access-RDP_Mac-success)
+![Ultrawide](https://img.shields.io/badge/Display-32:9_Ultrawide-blueviolet)
 
 > ***Vibe coding station*:** configuración minimalista y de alto rendimiento sobre Fedora 44 Server.
 
@@ -47,6 +48,10 @@ Fedora Workstation incluye soporte RDP sobre Wayland, **pero tiene limitaciones 
 2.  **No es realmente *headless*:** requiere un inicio de sesión local físico tras cada reinicio para desbloquear el llavero (*keyring*) y permitir conexiones remotas.
 
 Esta instalación manual sobre **Fedora Server** elimina la dependencia de GDM/Gnome, permitiendo un **inicio de sesión 100 % remoto** y soporte nativo para **3 monitores** desde el cliente RDP de Mac.
+
+**Clientes RDP probados:**
+- **macOS:** Microsoft Remote Desktop — 3 monitores 1080p ✔️
+- **Linux:** Remmina (Fedora 44) — *ultrawide* 32:9 @ 5120×1440 ✔️
 
 ## 📚 Guía de instalación
 
