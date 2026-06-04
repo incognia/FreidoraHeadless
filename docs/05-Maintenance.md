@@ -37,6 +37,15 @@ sudo systemctl set-default graphical.target    # Con interfaz gráfica local
 pkill -u $USER Xvnc
 ```
 
+### Wallpaper
+```bash
+# Recargar wallpaper (alias)
+reloadbg
+
+# Equivalente a
+~/.fehbg
+```
+
 ### Actualización
 ```bash
 # Actualizar sistema

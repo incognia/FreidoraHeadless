@@ -35,14 +35,42 @@ chmod +x ~/.xsession
 
 ## 3. Preparar *wallpaper* (*workaround* JXL)
 
-Fedora incluye *wallpapers* en formato JXL, incompatible con `feh`. Convertimos el predeterminado a PNG.
+Fedora incluye *wallpapers* en formato JXL (desde F42), incompatible con `feh`. Convertimos a PNG.
+
+### Instalación de herramientas y colección de wallpapers
 
 ```bash
+# Herramientas de conversión JXL
 sudo dnf install -y libjxl-utils
-mkdir -p ~/.local/share/backgrounds
 
-# Convertir wallpaper
-djxl /usr/share/backgrounds/default.jxl ~/.local/share/backgrounds/default.png
+# Colección completa de wallpapers (F34-F44)
+sudo dnf install -y f34-backgrounds-base f35-backgrounds-base f36-backgrounds-base \
+  f37-backgrounds-base f38-backgrounds-base f39-backgrounds-base f40-backgrounds-base \
+  f41-backgrounds-base f42-backgrounds-base f43-backgrounds-base f44-backgrounds-base
+
+mkdir -p ~/.local/share/backgrounds
+```
+
+### Wallpapers disponibles
+
+| Versión | Formato | Ubicación |
+| :--- | :--- | :--- |
+| F34-F41 | PNG | `/usr/share/backgrounds/fXX/default/` |
+| F42-F44 | JXL | `/usr/share/backgrounds/fXX/default/` |
+
+Cada versión incluye variantes `day` y `night`.
+
+### Aplicar wallpaper
+
+```bash
+# Wallpapers PNG (F34-F41) - copia directa
+cp /usr/share/backgrounds/f39/default/f39-01-night.png ~/.local/share/backgrounds/default.png
+
+# Wallpapers JXL (F42-F44) - requiere conversión
+djxl /usr/share/backgrounds/f44/default/f44-01-night.jxl ~/.local/share/backgrounds/default.png
+
+# Recargar wallpaper
+~/.fehbg
 ```
 
 ## 4. Habilitar servicio y *firewall*

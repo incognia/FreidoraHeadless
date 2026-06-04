@@ -56,7 +56,7 @@ pkill xss-lock; i3-msg reload
     reemplazar `status_command i3status` por `status_command i3blocks`.
 2.  **Configurar *gaps* y bordes:**
     ```
-    gaps inner 8
+    gaps inner 16
     smart_gaps off
     default_border pixel 1
     ```

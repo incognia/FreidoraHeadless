@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-06-04] - Colección de wallpapers y ajustes de i3
+
+- feat: instalar colección completa de wallpapers Fedora (F34-F44)
+- feat: crear alias reloadbg para recargar wallpaper
+- feat: aumentar gaps de i3 de 8px a 16px
+- docs: documentar instalación y uso de wallpapers con conversión JXL a PNG
+- docs: documentar alias reloadbg en cheat sheet de mantenimiento
+
 ## [2026-06-03] - Sincronización de wallpapers y corrección de iconos
 
 - feat: actualizar sistema de Fedora 43 a Fedora 44
