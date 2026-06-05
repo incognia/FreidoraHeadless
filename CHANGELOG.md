@@ -2,6 +2,7 @@
 
 ## [2026-06-04] - Colección de wallpapers y ajustes de i3
 
+- feat: configurar dunst con tema Dracula y títulos green
 - docs: agregar screenshot del entorno en display ultrawide 32:9
 - docs: documentar clientes RDP probados (macOS 3x1080p, Remmina ultrawide 32:9)
 - feat: instalar colección completa de wallpapers Fedora (F34-F44)

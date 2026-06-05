@@ -105,7 +105,44 @@ xfconf-query -c xfce4-terminal -p /color-background -s "#282a36"
 xfconf-query -c xfce4-terminal -p /color-foreground -s "#f8f8f2"
 ```
 
-## 5. IDE Antigravity
+## 5. Notificaciones (dunst)
+
+Configurar `dunst` con tema Dracula, sin bordes y títulos con acento green:
+
+```bash
+mkdir -p ~/.config/dunst
+cat > ~/.config/dunst/dunstrc << 'EOF'
+[global]
+    width = 350
+    height = (0, 100)
+    origin = top-right
+    offset = (20, 50)
+    frame_width = 0
+    separator_color = "#44475a"
+    corner_radius = 8
+    font = AdwaitaMono Nerd Font 9
+format = "<b><span foreground='#50fa7b'>%s</span></b>\n%b"
+
+[urgency_low]
+    background = "#282a36"
+    foreground = "#6272a4"
+    timeout = 5
+
+[urgency_normal]
+    background = "#282a36"
+    foreground = "#f8f8f2"
+    timeout = 10
+
+[urgency_critical]
+    background = "#282a36"
+    foreground = "#ff5555"
+    timeout = 0
+EOF
+```
+
+Recargar: `pkill dunst && dunst &`
+
+## 6. IDE Antigravity
 
 Instalación del entorno de desarrollo:
 
