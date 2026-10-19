@@ -1,0 +1,35 @@
+---
+- name: Install zsh
+  ansible.builtin.dnf:
+    name: zsh
+    state: present
+
+- name: Use zsh as login shell
+  ansible.builtin.user:
+    name: "{{ freidora_user }}"
+    shell: /usr/bin/zsh
+
+- name: Clone Oh My Zsh, Powerlevel10k and plugins
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ freidora_home }}/{{ item.dest }}"
+    version: "{{ item.version }}"
+    depth: 1
+  loop:
+    - { repo: https://github.com/ohmyzsh/ohmyzsh.git, dest: .oh-my-zsh, version: "{{ freidora_ohmyzsh_version }}" }
+    - { repo: https://github.com/romkatv/powerlevel10k.git, dest: powerlevel10k, version: "{{ freidora_p10k_version }}" }
+    - { repo: https://github.com/zsh-users/zsh-autosuggestions.git, dest: .oh-my-zsh/custom/plugins/zsh-autosuggestions, version: "{{ freidora_zsh_autosuggestions_version }}" }
+    - { repo: https://github.com/zsh-users/zsh-syntax-highlighting.git, dest: .oh-my-zsh/custom/plugins/zsh-syntax-highlighting, version: "{{ freidora_zsh_syntax_highlighting_version }}" }
+  become: true
+  become_user: "{{ freidora_user }}"
+
+- name: Deploy zsh dotfiles from config/
+  ansible.builtin.copy:
+    src: "{{ freidora_config_dir }}/dotfiles/{{ item }}"
+    dest: "{{ freidora_home }}/{{ item }}"
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    mode: "0644"
+  loop:
+    - .zshrc
+    - .p10k.zsh

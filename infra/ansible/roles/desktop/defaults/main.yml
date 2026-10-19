@@ -1,0 +1,35 @@
+---
+freidora_desktop_packages:
+  - i3
+  - i3blocks
+  - dmenu
+  - feh
+  - dunst
+  - dex-autostart
+  - network-manager-applet
+  - xrandr
+  - xfce4-terminal
+  - thunar
+  - thunar-archive-plugin
+  - mousepad
+  - ristretto
+  - xfce4-taskmanager
+  - xfce4-screenshooter
+  - xfce4-settings
+  - papirus-icon-theme
+  - libjxl-utils
+  - f44-backgrounds-base
+
+freidora_nerd_font_url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/AdwaitaMono.zip
+freidora_nerd_font_checksum: sha256:6f0e3e32dcc408196e0abebf953e3e4f6213813b38201d669a33085811f240e1
+
+freidora_wallpaper_source: /usr/share/backgrounds/f44/default/f44-01-night.jxl
+
+# Paths under config/dotfiles/ copied to the user's home.
+freidora_desktop_dotfiles:
+  - .config/i3/config
+  - .config/i3blocks/config
+  - .config/gtk-3.0/settings.ini
+  - .config/gtk-4.0/settings.ini
+  - .config/dunst/dunstrc
+  - .gtkrc-2.0

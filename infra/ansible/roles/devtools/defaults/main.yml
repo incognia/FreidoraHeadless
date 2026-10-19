@@ -1,0 +1,8 @@
+---
+freidora_devtools_packages:
+  - ghostty
+  - code-insiders
+
+freidora_vscode_extensions:
+  - dracula-theme.theme-dracula
+  - anthropic.claude-code

@@ -1,0 +1,78 @@
+---
+- name: Enable Ghostty COPR
+  community.general.copr:
+    name: scottames/ghostty
+    state: enabled
+
+- name: Import Microsoft signing key
+  ansible.builtin.rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Deploy VS Code repository from config/system (gpgcheck=1)
+  ansible.builtin.copy:
+    src: "{{ freidora_config_dir }}/system/vscode.repo"
+    dest: /etc/yum.repos.d/vscode.repo
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Check packages exist for this architecture
+  ansible.builtin.command:
+    cmd: dnf -q repoquery --arch {{ ansible_facts['architecture'] }},noarch --latest-limit 1 {{ item }}
+  loop: "{{ freidora_devtools_packages }}"
+  register: freidora_devtools_query
+  changed_when: false
+  check_mode: false
+
+- name: Fail clearly on missing packages
+  ansible.builtin.fail:
+    msg: "Package '{{ item.item }}' is not available for {{ ansible_facts['architecture'] }}."
+  loop: "{{ freidora_devtools_query.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when: item.stdout | trim | length == 0
+
+- name: Install Ghostty and VS Code Insiders
+  ansible.builtin.dnf:
+    name: "{{ freidora_devtools_packages }}"
+    state: present
+
+- name: Create Ghostty config directory
+  ansible.builtin.file:
+    path: "{{ freidora_home }}/.config/ghostty"
+    state: directory
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    mode: "0755"
+
+- name: Deploy Ghostty config from config/
+  ansible.builtin.copy:
+    src: "{{ freidora_config_dir }}/dotfiles/.config/ghostty/config"
+    dest: "{{ freidora_home }}/.config/ghostty/config"
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    mode: "0644"
+
+- name: List VS Code Insiders extensions
+  ansible.builtin.command: code-insiders --list-extensions
+  register: freidora_vscode_installed
+  changed_when: false
+  check_mode: false
+  become: true
+  become_user: "{{ freidora_user }}"
+
+- name: Install VS Code Insiders extensions
+  ansible.builtin.command: code-insiders --install-extension {{ item }}
+  loop: "{{ freidora_vscode_extensions }}"
+  when: item | lower not in (freidora_vscode_installed.stdout | lower).splitlines()
+  become: true
+  become_user: "{{ freidora_user }}"
+
+- name: Install Claude Code (native installer)
+  ansible.builtin.shell:
+    cmd: set -o pipefail && curl -fsSL https://claude.ai/install.sh | bash
+    creates: "{{ freidora_home }}/.local/bin/claude"
+    executable: /bin/bash
+  become: true
+  become_user: "{{ freidora_user }}"

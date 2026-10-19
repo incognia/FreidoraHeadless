@@ -1,0 +1,10 @@
+---
+# Single source of truth for dotfiles and system files (see AGENTS.md).
+freidora_config_dir: "{{ playbook_dir }}/../../config"
+
+# Unprivileged user that owns the desktop session.
+freidora_user: "{{ ansible_user }}"
+freidora_home: "/home/{{ freidora_user }}"
+
+# Overridden per inventory.
+freidora_baremetal: false

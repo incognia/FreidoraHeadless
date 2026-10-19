@@ -1,0 +1,11 @@
+---
+freidora_dracula_gtk_url: https://github.com/dracula/gtk/releases/download/v4.0.0/Dracula.tar.xz
+freidora_dracula_gtk_checksum: sha256:199bd4051b243fddadc625038686c7e8a91d4e8098868aadb4ca4c0c80911b6f
+freidora_dracula_icons_url: https://github.com/dracula/gtk/files/5214870/Dracula.zip
+freidora_dracula_icons_checksum: sha256:33ad2819efb4fe5f612e32cb3959772c1a475608ef054e237d27278ec30bccb6
+
+freidora_qt_dotfiles:
+  - .config/qt5ct/qt5ct.conf
+  - .config/qt5ct/colors/Dracula.conf
+  - .config/qt6ct/qt6ct.conf
+  - .config/qt6ct/colors/Dracula.conf

@@ -1,0 +1,49 @@
+---
+- name: Install Qt theme tools
+  ansible.builtin.dnf:
+    name: [qt5ct, qt6ct]
+    state: present
+
+- name: Download Dracula GTK theme and icons
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    checksum: "{{ item.checksum }}"
+    mode: "0644"
+  loop:
+    - { url: "{{ freidora_dracula_gtk_url }}", checksum: "{{ freidora_dracula_gtk_checksum }}", dest: /var/cache/dracula-gtk.tar.xz }
+    - { url: "{{ freidora_dracula_icons_url }}", checksum: "{{ freidora_dracula_icons_checksum }}", dest: /var/cache/dracula-icons.zip }
+
+- name: Install Dracula GTK theme
+  ansible.builtin.unarchive:
+    src: /var/cache/dracula-gtk.tar.xz
+    dest: /usr/share/themes
+    remote_src: true
+    creates: /usr/share/themes/Dracula/index.theme
+
+- name: Install Dracula icons
+  ansible.builtin.unarchive:
+    src: /var/cache/dracula-icons.zip
+    dest: /usr/share/icons
+    remote_src: true
+    creates: /usr/share/icons/Dracula/index.theme
+
+- name: Create Qt config directories
+  ansible.builtin.file:
+    path: "{{ freidora_home }}/{{ item }}"
+    state: directory
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    mode: "0755"
+  loop:
+    - .config/qt5ct/colors
+    - .config/qt6ct/colors
+
+- name: Deploy Qt Dracula config from config/
+  ansible.builtin.copy:
+    src: "{{ freidora_config_dir }}/dotfiles/{{ item }}"
+    dest: "{{ freidora_home }}/{{ item }}"
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    mode: "0644"
+  loop: "{{ freidora_qt_dotfiles }}"

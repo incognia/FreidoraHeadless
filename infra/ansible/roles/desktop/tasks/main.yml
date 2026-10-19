@@ -1,0 +1,66 @@
+---
+- name: Install i3, XFCE utilities and desktop tools
+  ansible.builtin.dnf:
+    name: "{{ freidora_desktop_packages }}"
+    state: present
+
+- name: Create dotfile directories
+  ansible.builtin.file:
+    path: "{{ freidora_home }}/{{ item | dirname }}"
+    state: directory
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    mode: "0755"
+  loop: "{{ freidora_desktop_dotfiles | select('search', '/') | list }}"
+
+- name: Deploy desktop dotfiles from config/
+  ansible.builtin.copy:
+    src: "{{ freidora_config_dir }}/dotfiles/{{ item }}"
+    dest: "{{ freidora_home }}/{{ item }}"
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    mode: "0644"
+  loop: "{{ freidora_desktop_dotfiles }}"
+
+- name: Deploy .xsession from config/
+  ansible.builtin.copy:
+    src: "{{ freidora_config_dir }}/dotfiles/.xsession"
+    dest: "{{ freidora_home }}/.xsession"
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    mode: "0755"
+
+- name: Create font and wallpaper directories
+  ansible.builtin.file:
+    path: "{{ freidora_home }}/{{ item }}"
+    state: directory
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    mode: "0755"
+  loop:
+    - .local/share/fonts/AdwaitaMono
+    - .local/share/backgrounds
+
+- name: Download AdwaitaMono Nerd Font
+  ansible.builtin.get_url:
+    url: "{{ freidora_nerd_font_url }}"
+    dest: /var/cache/AdwaitaMono-nerd-font.zip
+    checksum: "{{ freidora_nerd_font_checksum }}"
+    mode: "0644"
+
+- name: Install AdwaitaMono Nerd Font
+  ansible.builtin.unarchive:
+    src: /var/cache/AdwaitaMono-nerd-font.zip
+    dest: "{{ freidora_home }}/.local/share/fonts/AdwaitaMono"
+    remote_src: true
+    owner: "{{ freidora_user }}"
+    group: "{{ freidora_user }}"
+    creates: "{{ freidora_home }}/.local/share/fonts/AdwaitaMono/AdwaitaMonoNerdFont-Regular.ttf"
+  notify: Refresh font cache
+
+- name: Convert Fedora wallpaper from JXL to PNG
+  ansible.builtin.command:
+    cmd: djxl {{ freidora_wallpaper_source }} {{ freidora_home }}/.local/share/backgrounds/default.png
+    creates: "{{ freidora_home }}/.local/share/backgrounds/default.png"
+  become: true
+  become_user: "{{ freidora_user }}"

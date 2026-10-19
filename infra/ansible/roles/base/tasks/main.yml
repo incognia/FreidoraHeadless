@@ -1,0 +1,29 @@
+---
+- name: Upgrade all packages
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_only: true
+  when: freidora_upgrade | bool
+
+- name: Install base packages
+  ansible.builtin.dnf:
+    name: "{{ freidora_base_packages }}"
+    state: present
+
+- name: Read default systemd target
+  ansible.builtin.command: systemctl get-default
+  register: freidora_default_target
+  changed_when: false
+  check_mode: false
+
+- name: Boot to multi-user target (no local graphical session)
+  ansible.builtin.command: systemctl set-default multi-user.target
+  when: freidora_default_target.stdout != "multi-user.target"
+
+- name: Mask suspend and hibernation targets (bare metal only)
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    masked: true
+  loop: "{{ freidora_sleep_targets }}"
+  when: freidora_baremetal | bool

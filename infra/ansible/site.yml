@@ -1,0 +1,26 @@
+---
+# Configures a FreidoraHeadless host (bare metal or VM) to match guides 01-06.
+# Select the target only by inventory:
+#   ansible-playbook -i inventories/vm/hosts.yml site.yml
+#   ansible-playbook -i inventories/baremetal/hosts.yml site.yml --check --diff
+- name: Configure FreidoraHeadless host
+  hosts: all
+  become: true
+  roles:
+    - role: base
+      tags: [base]
+    - role: network
+      tags: [network]
+      when: freidora_baremetal | bool
+    - role: ssh
+      tags: [ssh]
+    - role: desktop
+      tags: [desktop]
+    - role: rdp
+      tags: [rdp]
+    - role: theme
+      tags: [theme]
+    - role: shell
+      tags: [shell]
+    - role: devtools
+      tags: [devtools]

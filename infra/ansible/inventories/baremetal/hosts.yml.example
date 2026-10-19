@@ -1,0 +1,15 @@
+---
+# Copy to hosts.yml (ignored by Git) and fill in the real values.
+baremetal:
+  hosts:
+    tsibi:
+      ansible_host: 192.0.2.10
+      ansible_user: tu_usuario
+      ansible_ssh_private_key_file: ~/.ssh/tu_llave
+      freidora_hostname: tu-host.example.org
+      freidora_network:
+        interface: eno1
+        address: 192.0.2.10/24
+        gateway: 192.0.2.1
+        dns: [8.8.8.8, 8.8.4.4]
+        dns_search: example.org

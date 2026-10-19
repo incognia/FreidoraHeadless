@@ -1,0 +1,62 @@
+---
+- name: Install xrdp, Xvnc and firewalld
+  ansible.builtin.dnf:
+    name:
+      - xrdp
+      - xrdp-selinux
+      - tigervnc-server-minimal
+      - firewalld
+    state: present
+
+# xrdp authenticates with the account password (PAM). The VM is created
+# without one, so it can be set from the (Git-ignored) inventory. SSH keeps
+# rejecting passwords regardless (see the ssh role).
+- name: Set the user's password for RDP logins
+  ansible.builtin.user:
+    name: "{{ freidora_user }}"
+    password: "{{ freidora_user_password_hash }}"
+    update_password: always
+  when: freidora_user_password_hash is defined
+  no_log: true
+
+- name: Deploy xrdp config (Xvnc-only), keymap and sesman config from config/system
+  ansible.builtin.copy:
+    src: "{{ freidora_config_dir }}/system/{{ item }}"
+    dest: /etc/xrdp/{{ item }}
+    owner: root
+    group: root
+    mode: "0644"
+  loop:
+    - xrdp.ini
+    - km-00000409.ini
+    - sesman.ini
+  notify: Restart xrdp
+
+- name: Enable firewalld
+  ansible.builtin.systemd_service:
+    name: firewalld
+    enabled: true
+    state: started
+
+# A freshly started firewalld needs a moment before it answers on D-Bus.
+- name: Wait for firewalld to be ready
+  ansible.builtin.command: firewall-cmd --state
+  register: freidora_firewalld_state
+  until: freidora_firewalld_state.rc == 0
+  retries: 15
+  delay: 2
+  changed_when: false
+  check_mode: false
+
+- name: Open RDP port
+  ansible.posix.firewalld:
+    port: 3389/tcp
+    permanent: true
+    immediate: true
+    state: enabled
+
+- name: Enable xrdp
+  ansible.builtin.systemd_service:
+    name: xrdp
+    enabled: true
+    state: started

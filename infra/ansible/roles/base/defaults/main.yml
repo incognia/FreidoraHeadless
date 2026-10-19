@@ -1,0 +1,16 @@
+---
+# Upgrade all packages on every run (guide 01 §1). Set to false for faster runs.
+freidora_upgrade: true
+
+freidora_base_packages:
+  - curl
+  - git
+  - unzip
+  - fontconfig
+  - python3-libdnf5
+
+freidora_sleep_targets:
+  - sleep.target
+  - suspend.target
+  - hibernate.target
+  - hybrid-sleep.target

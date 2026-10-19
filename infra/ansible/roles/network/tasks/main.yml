@@ -1,0 +1,31 @@
+---
+- name: Check required network variables
+  ansible.builtin.assert:
+    that:
+      - freidora_hostname is defined
+      - freidora_network is defined
+    fail_msg: "Define freidora_hostname and freidora_network in the bare metal inventory."
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ freidora_hostname }}"
+
+- name: Resolve hostname locally
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.0\.1\s+{{ freidora_hostname | regex_escape }}\s'
+    line: "127.0.0.1   {{ freidora_hostname }} {{ freidora_hostname.split('.')[0] }}"
+    insertafter: EOF
+
+- name: Configure static IPv4 address
+  community.general.nmcli:
+    conn_name: "{{ freidora_network.interface }}"
+    ifname: "{{ freidora_network.interface }}"
+    type: ethernet
+    method4: manual
+    ip4: "{{ freidora_network.address }}"
+    gw4: "{{ freidora_network.gateway }}"
+    dns4: "{{ freidora_network.dns }}"
+    dns4_search: "{{ [freidora_network.dns_search] }}"
+    method6: disabled
+    state: present

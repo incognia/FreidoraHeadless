@@ -1,0 +1,6 @@
+---
+freidora_baremetal: false
+
+# The VM is recreated with a new host key on every `terraform apply` and is
+# reachable only on the Mac's loopback, so host key pinning is skipped here.
+ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR"
