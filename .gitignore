@@ -20,3 +20,10 @@ dist/
 build/
 *.log
 *.bak
+
+# Infrastructure as code (local state and real inventories)
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+infra/ansible/inventories/*/hosts.yml
