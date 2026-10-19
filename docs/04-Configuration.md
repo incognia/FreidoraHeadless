@@ -142,23 +142,35 @@ EOF
 
 Recargar: `pkill dunst && dunst &`
 
-## 6. IDE Antigravity
+## 6. IDE VS Code Insiders
 
-Instalación del entorno de desarrollo:
+Se instala desde el repositorio oficial de Microsoft, con verificación de firmas GPG (igual que `config/system/vscode.repo`):
 
 ```bash
-sudo tee /etc/yum.repos.d/antigravity.repo << EOL
-[antigravity-rpm]
-name=Antigravity RPM Repository
-baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/antigravity-rpm
-enabled=1
-gpgcheck=0
-EOL
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 
-sudo dnf makecache && sudo dnf install antigravity
+sudo tee /etc/yum.repos.d/vscode.repo << 'EOF'
+[code]
+name=Visual Studio Code
+baseurl=https://packages.microsoft.com/yumrepos/vscode
+enabled=1
+autorefresh=1
+type=rpm-md
+gpgcheck=1
+gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+EOF
+
+sudo dnf check-update; sudo dnf install -y code-insiders
 ```
 
-**Configuración (`settings.json`):**
+Extensiones (tema Dracula y Claude Code):
+
+```bash
+code-insiders --install-extension dracula-theme.theme-dracula
+code-insiders --install-extension anthropic.claude-code
+```
+
+**Configuración (`~/.config/Code - Insiders/User/settings.json`):**
 ```json
 {
     "workbench.colorTheme": "Dracula Theme Soft",
