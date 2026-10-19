@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Per-user libvirtd session daemon for the Terraform VM (qemu:///session).
+  Homebrew's `brew services start libvirt` runs the system daemon, which does
+  not start as a regular user, and the auto-spawned virtqemud exits after 120 s.
+  Socket: ~/.cache/libvirt/libvirt-sock
+-->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>freidora.libvirtd</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/opt/libvirt/sbin/libvirtd</string>
+	</array>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<!-- libvirtd looks up qemu-system-aarch64 in PATH -->
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+	</dict>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>ProcessType</key>
+	<string>Background</string>
+</dict>
+</plist>
