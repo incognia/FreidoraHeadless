@@ -28,9 +28,9 @@ full_text=
 separator=false
 interval=once
 
-[warp]
-full_text= Warp
-command=setsid warp-terminal >/dev/null 2>&1
+[ghostty]
+full_text= Ghostty
+command=setsid ghostty >/dev/null 2>&1
 interval=0
 separator=false
 
@@ -39,9 +39,9 @@ full_text=
 separator=false
 interval=once
 
-[antigravity]
-full_text= Antigravity
-command=setsid antigravity >/dev/null 2>&1
+[vscode]
+full_text= Code
+command=setsid code-insiders >/dev/null 2>&1
 interval=0
 separator=false
 

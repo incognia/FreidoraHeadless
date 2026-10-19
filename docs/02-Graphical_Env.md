@@ -16,13 +16,13 @@ sudo dnf install -y i3 i3blocks feh
 
 ## 2. Instalar terminal y utilidades XFCE
 
-Usamos `xfce4-terminal` como terminal principal y algunas utilidades ligeras de XFCE que se integran bien con i3.
+Instalamos algunas utilidades ligeras de XFCE que se integran bien con i3. `xfce4-terminal` queda como terminal de respaldo; la principal es Ghostty (sección 6).
 
 ```bash
 sudo dnf install -y xfce4-terminal thunar thunar-archive-plugin mousepad ristretto xfce4-taskmanager xfce4-screenshooter xfce4-settings
 ```
 
-- **xfce4-terminal**: emulador de terminal
+- **xfce4-terminal**: terminal de respaldo
 - **thunar**: gestor de archivos
 - **thunar-archive-plugin**: soporte para archivos comprimidos
 - **mousepad**: editor de texto simple
@@ -86,6 +86,31 @@ gtk-cursor-theme-name="Adwaita"
 gtk-font-name="Sans 9"
 EOF
 ```
+
+## 6. Instalar terminal Ghostty
+
+Ghostty es la terminal principal. Fedora no la empaqueta en sus repositorios oficiales; se instala desde el COPR que recomienda el proyecto.
+
+```bash
+sudo dnf copr enable -y scottames/ghostty
+sudo dnf install -y ghostty
+```
+
+Configuración con tema Dracula y la Nerd Font del entorno (igual que `config/dotfiles/.config/ghostty/config`):
+
+```bash
+mkdir -p ~/.config/ghostty
+cat > ~/.config/ghostty/config << 'EOF'
+theme = Dracula
+font-family = AdwaitaMono Nerd Font
+font-size = 10
+window-padding-x = 8
+window-padding-y = 8
+confirm-close-surface = false
+EOF
+```
+
+> **Nota sobre RDP:** Ghostty requiere OpenGL 3.3. En la sesión Xvnc no hay GPU y el renderizado es por *software* (Mesa llvmpipe), que es suficiente pero consume más CPU. Si Ghostty no inicia, verifica con `glxinfo -B` (paquete `mesa-demos`) y usa `xfce4-terminal` mientras tanto.
 
 ## Siguiente paso
 
