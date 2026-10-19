@@ -1,5 +1,14 @@
 # Changelog
 
+## [2026-10-19] - Adopción de desarrollo guiado por especificaciones (SDD)
+
+- docs: agregar propuesta de OpenSpec add-iac-provisioning (VM Fedora en macOS con Terraform y libvirt, y configuración con Ansible para *bare metal* y VM)
+- docs: agregar propuesta de OpenSpec replace-dev-tooling (Claude Code, VS Code Insiders y Ghostty en lugar de Warp y Antigravity)
+- feat: inicializar OpenSpec (esquema spec-driven, artefactos en es-MX)
+- feat: agregar comandos y skills de OpenSpec para Claude Code y Antigravity
+- docs: reorientar el README de *vibe coding* a SDD y documentar el flujo de OpenSpec
+- docs: agregar AGENTS.md con instrucciones para agentes y CLAUDE.md que lo importa
+
 ## [2026-06-04] - Colección de wallpapers y ajustes de i3
 
 - feat: configurar dunst con tema Dracula y títulos green
