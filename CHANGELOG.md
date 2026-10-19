@@ -2,6 +2,12 @@
 
 ## [2026-10-19] - Adopción de desarrollo guiado por especificaciones (SDD)
 
+- docs: actualizar las tareas de replace-dev-tooling (11 de 15 completadas; la 4.2 aplica a mano en el host solo los cambios de configuración en lugar de «sync.sh», y nueva 4.4 para ejecutar «backup.sh» después)
+- docs: retirar Warp y Antigravity del README, de las guías 04 y 05, de i3blocks y de los scripts «backup.sh» y «sync.sh» y eliminar «antigravity.repo», como parte de la aplicación del cambio de OpenSpec replace-dev-tooling
+- feat: instalar Claude Code con el instalador nativo y agregar «~/.local/bin» al PATH en «.zshrc» (guía 04)
+- feat: instalar VS Code Insiders desde el repositorio de Microsoft con «gpgcheck=1» (guía 04 y «config/system/vscode.repo»)
+- feat: adoptar Ghostty como terminal principal (guía 02, configuración en «config/dotfiles/.config/ghostty», atajo Mod+Enter y lanzador en i3blocks)
+- chore: eliminar «.agents/» (comandos de OpenSpec para Antigravity), eliminar «config.bak» de i3blocks e ignorar «*.bak» en «.gitignore»
 - docs: agregar propuesta de OpenSpec add-iac-provisioning (VM Fedora en macOS con Terraform y libvirt, y configuración con Ansible para *bare metal* y VM)
 - docs: agregar propuesta de OpenSpec replace-dev-tooling (Claude Code, VS Code Insiders y Ghostty en lugar de Warp y Antigravity)
 - feat: inicializar OpenSpec (esquema spec-driven, artefactos en es-MX)
