@@ -50,6 +50,25 @@ El *playbook* SHALL funcionar en x86_64 y aarch64, y MUST fallar con un mensaje 
 - **WHEN** un paquete requerido no existe para la arquitectura del host
 - **THEN** la ejecución se detiene indicando el paquete y la arquitectura
 
+### Requirement: Contraseña opcional para RDP
+El *playbook* SHALL permitir fijar la contraseña del usuario a partir de un *hash* definido en el inventario, para que xrdp pueda autenticar sesiones. Si el *hash* no está definido, MUST NOT modificar la contraseña existente. SSH MUST seguir rechazando la autenticación por contraseña en ambos casos.
+
+#### Scenario: VM con hash definido
+- **WHEN** el inventario de la VM define `freidora_user_password_hash` y se ejecuta el *playbook*
+- **THEN** xrdp acepta la contraseña correspondiente, rechaza cualquier otra y abre la sesión i3
+
+#### Scenario: Xvnc como única sesión
+- **WHEN** el usuario se conecta por RDP y llega a la pantalla de inicio de xrdp
+- **THEN** la única sesión ofrecida es Xvnc, y con la contraseña correcta se abre la sesión i3 sin elegir nada más
+
+#### Scenario: Bare metal sin hash
+- **WHEN** el inventario de bare metal no define `freidora_user_password_hash`
+- **THEN** la contraseña del usuario en el host no cambia
+
+#### Scenario: SSH sigue sin contraseña
+- **WHEN** la contraseña está fijada y se intenta entrar por SSH con ella
+- **THEN** el acceso es rechazado
+
 ### Requirement: Datos sensibles fuera de Git
 Los inventarios con IPs, dominios o usuarios reales MUST NOT versionarse; el repositorio SHALL incluir solo inventarios de ejemplo.
 

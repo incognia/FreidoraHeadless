@@ -2,6 +2,13 @@
 
 ## [2026-10-19] - Adopción de desarrollo guiado por especificaciones (SDD)
 
+- docs: registrar en el cambio de OpenSpec add-iac-provisioning los resultados de la prueba técnica (hallazgos de libvirt en macOS, HVF y xrdp), el requisito de contraseña opcional para RDP con Xvnc como única sesión y el avance de tareas (20 de 24)
+- docs: agregar la guía 07 de infraestructura como código, enlazar las guías 06 y 07 en el README con Terraform y Ansible en el stack, y documentar «infra/» en AGENTS.md
+- feat: agregar *playbook* de Ansible con ocho roles (base, network, ssh, desktop, rdp, theme, shell, devtools) e inventarios de ejemplo para *bare metal* y VM
+- feat: versionar en «config/» la configuración de dunst, qt5ct, qt6ct y un «xrdp.ini» con Xvnc como única sesión, incluirlos en «backup.sh» y «sync.sh», y documentarlo en la guía 03
+- feat: agregar módulo de Terraform para una VM Fedora 44 aarch64 en macOS con libvirt, HVF, cloud-init y SSH/RDP solo en *localhost*
+- feat: agregar LaunchAgent de macOS para un «libvirtd» de sesión persistente
+- chore: ignorar el estado de Terraform, «terraform.tfvars» y los inventarios reales de Ansible
 - docs: actualizar las tareas de replace-dev-tooling (11 de 15 completadas; la 4.2 aplica a mano en el host solo los cambios de configuración en lugar de «sync.sh», y nueva 4.4 para ejecutar «backup.sh» después)
 - docs: retirar Warp y Antigravity del README, de las guías 04 y 05, de i3blocks y de los scripts «backup.sh» y «sync.sh» y eliminar «antigravity.repo», como parte de la aplicación del cambio de OpenSpec replace-dev-tooling
 - feat: instalar Claude Code con el instalador nativo y agregar «~/.local/bin» al PATH en «.zshrc» (guía 04)
