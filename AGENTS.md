@@ -6,17 +6,19 @@ Instrucciones para agentes de IA que trabajan en este repositorio.
 
 FreidoraHeadless documenta y versiona una estación de desarrollo *headless* sobre **Fedora 44 Server** (host `tsibi`, bare metal x86_64), accesible por RDP (xrdp + Xvnc) desde macOS y Linux, con i3, tema Dracula y Zsh + Powerlevel10k.
 
-El entregable principal es la **documentación**. No hay código de aplicación, compilación ni pruebas automatizadas.
+El entregable principal es la **documentación**. No hay código de aplicación. La infraestructura como código de `infra/` (Ansible y Terraform) automatiza las guías; valídala con `terraform validate` y `ansible-playbook --syntax-check`, y contra la VM, nunca contra el servidor real.
 
 ## Estructura
 
 | Ruta | Contenido |
 | :--- | :--- |
-| `docs/` | Guías numeradas (`01`–`06`) que se siguen en orden. |
+| `docs/` | Guías numeradas (`01`–`07`) que se siguen en orden. |
 | `config/dotfiles/` | Copia de los *dotfiles* reales del host (`~`). |
 | `config/system/` | Copia de archivos de `/etc` del host. |
 | `scripts/backup.sh` | Copia host → repo. Se ejecuta en `tsibi`, desde la raíz del repo. |
 | `scripts/sync.sh` | Copia repo → host. Sobrescribe sin respaldo. |
+| `infra/ansible/` | *Playbook* que configura bare metal o la VM a partir de `config/` (guía 07). |
+| `infra/terraform/vm-macos/` | VM Fedora aarch64 en macOS con libvirt; `infra/macos/` tiene su LaunchAgent. |
 | `openspec/` | Especificaciones (`specs/`) y cambios (`changes/`) de OpenSpec. |
 | `.claude/` | Comandos `/opsx:*` y *skills* de OpenSpec para Claude Code. |
 

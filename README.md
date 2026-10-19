@@ -8,6 +8,8 @@
 ![RDP](https://img.shields.io/badge/Access-RDP_Mac-success)
 ![Ultrawide](https://img.shields.io/badge/Display-32:9_Ultrawide-blueviolet)
 ![OpenSpec](https://img.shields.io/badge/Workflow-SDD_OpenSpec-orange)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-844FBA?logo=terraform&logoColor=white)
+![Ansible](https://img.shields.io/badge/Config-Ansible-EE0000?logo=ansible&logoColor=white)
 
 > **Estación SDD:** entorno minimalista y de alto rendimiento sobre Fedora 44 Server para desarrollo guiado por especificaciones (*spec-driven development*).
 
@@ -21,6 +23,7 @@ El objetivo es tener un entorno de desarrollo Linux nativo que combine la estabi
 - **Entorno:** i3 Window Manager (instalación manual).
 - **Acceso:** RDP (xrdp) optimizado para clientes Mac y multimonitor.
 - **Herramientas:** Ghostty + VS Code Insiders + Claude Code.
+- **Automatización:** Ansible configura el servidor; Terraform crea opcionalmente una VM equivalente en macOS.
 
 ## 🏗 Contexto de *hardware* e instalación
 
@@ -107,6 +110,14 @@ El «mojo» del sistema. Personalización visual y funcional.
 ### 5. [Mantenimiento](docs/05-Maintenance.md)
 *Cheat sheet* de comandos y referencia rápida para el día a día.
 
+### 6. [Tema Dracula](docs/06-Dracula_Theme.md)
+Instalación completa del tema Dracula para GTK, iconos y Qt.
+
+### 7. [Infraestructura como código](docs/07-IaC.md)
+Automatización de las guías anteriores.
+- Ansible: un *playbook* para bare metal y VM.
+- Terraform + libvirt: VM Fedora aarch64 en un Mac con Apple Silicon, como alternativa a bare metal.
+
 ## 🛠 *Stack* tecnológico
 
 | Componente | Elección | Razón |
@@ -116,6 +127,7 @@ El «mojo» del sistema. Personalización visual y funcional.
 | **Terminal** | Ghostty / xfce4 | Rápida, nativa y configurable en texto plano; xfce4 de respaldo. |
 | **IDE** | VS Code Insiders | Últimas funciones de VS Code y extensión de Claude Code. |
 | **Asistente IA** | Claude Code | Agente en terminal e IDE; ejecuta el flujo SDD de OpenSpec. |
+| **IaC** | Ansible + Terraform | Entorno reproducible en bare metal o en una VM sobre macOS. |
 | **Remoto** | Microsoft RDP (Mac) | Soporte nativo multimonitor y redirección de dispositivos. |
 
 ---
