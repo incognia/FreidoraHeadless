@@ -1,0 +1,21 @@
+#cloud-config
+hostname: ${hostname}
+users:
+  - name: ${username}
+    groups: [wheel]
+    shell: /bin/bash
+    sudo: "ALL=(ALL) NOPASSWD:ALL"
+    lock_passwd: true
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+disable_root: true
+ssh_pwauth: false
+write_files:
+  - path: /etc/ssh/sshd_config.d/10-freidora.conf
+    permissions: "0600"
+    content: |
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
+      PermitRootLogin no
+runcmd:
+  - systemctl reload sshd
