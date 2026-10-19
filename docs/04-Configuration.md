@@ -179,6 +179,22 @@ code-insiders --install-extension anthropic.claude-code
 }
 ```
 
+## 7. Asistente de IA (Claude Code)
+
+Instalador nativo: se actualiza solo y no depende de Node.js.
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+El binario queda en `~/.local/bin/claude`. Zsh no incluye esa ruta por defecto; `~/.zshrc` la agrega con:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+Verifica con `claude --version` y autentícate ejecutando `claude` la primera vez. Dentro de este repositorio, los comandos `/opsx:*` de OpenSpec quedan disponibles tanto en la terminal como en la extensión de VS Code Insiders.
+
 ## Verificación final
 
 Reinicia la sesión o recarga i3 (`Mod+Shift+R`) para ver todos los cambios aplicados.
