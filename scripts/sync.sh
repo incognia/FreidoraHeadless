@@ -19,6 +19,7 @@ cp -r "$CONF_DIR/dotfiles/.config/"* ~/.config/
 
 # 3. System configs (Etc)
 echo "🖥️ Restaurando configuraciones del sistema (requiere sudo)..."
+sudo cp "$CONF_DIR/system/xrdp.ini" /etc/xrdp/
 sudo cp "$CONF_DIR/system/km-00000409.ini" /etc/xrdp/
 sudo cp "$CONF_DIR/system/sesman.ini" /etc/xrdp/
 sudo cp "$CONF_DIR/system/vscode.repo" /etc/yum.repos.d/

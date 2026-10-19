@@ -20,9 +20,13 @@ cp -r ~/.config/i3blocks "$CONF_DIR/dotfiles/.config/"
 cp -r ~/.config/gtk-3.0 "$CONF_DIR/dotfiles/.config/"
 cp -r ~/.config/gtk-4.0 "$CONF_DIR/dotfiles/.config/"
 cp -r ~/.config/ghostty "$CONF_DIR/dotfiles/.config/"
+cp -r ~/.config/dunst "$CONF_DIR/dotfiles/.config/"
+cp -r ~/.config/qt5ct "$CONF_DIR/dotfiles/.config/"
+cp -r ~/.config/qt6ct "$CONF_DIR/dotfiles/.config/"
 
 # 3. System configs (Etc)
 echo "🖥️ Respaldando configuraciones del sistema (requiere sudo para leer algunas)..."
+cp /etc/xrdp/xrdp.ini "$CONF_DIR/system/"
 cp /etc/xrdp/km-00000409.ini "$CONF_DIR/system/"
 cp /etc/xrdp/sesman.ini "$CONF_DIR/system/"
 cp /etc/yum.repos.d/vscode.repo "$CONF_DIR/system/"

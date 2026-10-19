@@ -96,6 +96,15 @@ sudo cp /etc/xrdp/km-0000080a.ini /etc/xrdp/km-00000409.ini
 sudo systemctl restart xrdp
 ```
 
+### Xvnc como única sesión
+
+La pantalla de inicio de xrdp ofrece por defecto la sesión *Xorg* en primer lugar, pero este entorno usa Xvnc (TigerVNC) y no instala `xorgxrdp`. Si eliges *Xorg*, la conexión falla con «X server could not be started». Para evitarlo, `config/system/xrdp.ini` deja **Xvnc como única sesión**:
+
+```bash
+sudo cp config/system/xrdp.ini /etc/xrdp/xrdp.ini
+sudo systemctl restart xrdp
+```
+
 ### Limpieza de sesiones
 
 Para evitar que sesiones desconectadas consuman recursos, configuramos `xrdp` para terminarlas al desconectar.
