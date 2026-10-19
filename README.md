@@ -6,14 +6,15 @@
 ![Antigravity](https://img.shields.io/badge/IDE-Google_Antigravity_Pro-4285F4?logo=google&logoColor=white)
 ![RDP](https://img.shields.io/badge/Access-RDP_Mac-success)
 ![Ultrawide](https://img.shields.io/badge/Display-32:9_Ultrawide-blueviolet)
+![OpenSpec](https://img.shields.io/badge/Workflow-SDD_OpenSpec-orange)
 
-> ***Vibe coding station*:** configuración minimalista y de alto rendimiento sobre Fedora 44 Server.
+> **Estación SDD:** entorno minimalista y de alto rendimiento sobre Fedora 44 Server para desarrollo guiado por especificaciones (*spec-driven development*).
 
 Este repositorio documenta la transformación de una instalación limpia de **Fedora 44 Server** en una estación de desarrollo *headless* potente, gestionada remotamente desde macOS vía RDP con soporte para múltiples monitores.
 
 ## 🚀 Filosofía
 
-El objetivo es tener un entorno de desarrollo Linux nativo que combine la estabilidad de Fedora con un ritmo de desarrollo rápido (*fast-paced* pero no *bleeding edge* inestable), ideal para *vibe coding*.
+El objetivo es tener un entorno de desarrollo Linux nativo que combine la estabilidad de Fedora con un ritmo de desarrollo rápido (*fast-paced* pero no *bleeding edge* inestable), ideal para desarrollo guiado por especificaciones (SDD) con asistentes de IA.
 
 - **Base:** Fedora 44 Server (sin *bloatware* gráfico preinstalado).
 - **Entorno:** i3 Window Manager (instalación manual).
@@ -32,9 +33,28 @@ Originalmente se intentó usar la ISO de **Fedora Server DVD** completa, descarg
 
 La solución fue descargar la ISO **Fedora Server Net Install**. Con esta imagen, Fedora Media Writer creó el medio de instalación sin problemas, permitiendo el despliegue exitoso del sistema base.
 
-## 🤖 *Workflow* de construcción con IA (*vibe coding*)
+## 📐 Desarrollo guiado por especificaciones (SDD)
 
-Este entorno es producto de un flujo de trabajo asistido por IA:
+A partir de 2026-10-19, el repositorio se gestiona con [OpenSpec](https://github.com/Fission-AI/OpenSpec): todo cambio al entorno parte de una especificación acordada antes de tocar el sistema.
+
+```
+openspec/
+├── config.yaml      # contexto del proyecto y reglas para los artefactos
+├── specs/           # especificaciones vigentes (fuente de verdad)
+└── changes/         # propuestas en curso y archivo de cambios aplicados
+```
+
+**Flujo de trabajo:**
+
+1. **Proponer:** `/opsx:propose "<idea>"` genera `proposal.md`, `design.md`, `tasks.md` y los *deltas* de especificación.
+2. **Aplicar:** `/opsx:apply` implementa las tareas del cambio (docs, `config/`, *scripts*).
+3. **Archivar:** `/opsx:archive` integra los *deltas* en `openspec/specs/` y mueve el cambio a `changes/archive/`.
+
+Los comandos están disponibles en Claude Code (`/opsx:*`, en `.claude/`) y en Antigravity (`/opsx-*`, en `.agents/`).
+
+## 🤖 Historia de construcción con IA
+
+Antes de adoptar SDD, el entorno se construyó con un flujo de trabajo asistido por IA más informal:
 
 1.  **Fase de construcción (Warp Terminal):** toda la instalación de paquetes, configuración inicial y borrador de documentación se realizó usando la IA de Warp.
     *   *Inversión:* ~$20 USD (1000 créditos).
@@ -75,7 +95,7 @@ Configuración de `xrdp` para permitir una experiencia fluida desde macOS.
 - *Workarounds* para *wallpapers*.
 - Gestión de sesiones.
 
-### 4. [Configuración y *vibe*](docs/04-Configuration.md)
+### 4. [Configuración y personalización](docs/04-Configuration.md)
 El «mojo» del sistema. Personalización visual y funcional.
 - ***Shell*:** Zsh + Oh My Zsh + Powerlevel10k.
 - **IDE:** instalación y configuración de Antigravity.
