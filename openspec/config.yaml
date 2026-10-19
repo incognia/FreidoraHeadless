@@ -1,0 +1,47 @@
+schema: spec-driven
+
+context: |
+  Language: es-MX
+  All artifacts must be written in es-MX.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+
+  Proyecto: FreidoraHeadless. Documenta y versiona una estación de desarrollo
+  headless (host "tsibi") sobre Fedora 44 Server, accesible por RDP (xrdp + Xvnc)
+  desde macOS y Linux, con i3 + i3blocks, tema Dracula, Zsh + Powerlevel10k,
+  Warp y Google Antigravity.
+
+  Estructura:
+  - docs/: guías numeradas (01-06) en español de México; son el entregable principal.
+  - config/dotfiles/ y config/system/: instantáneas de la configuración real del host.
+  - scripts/backup.sh (host -> repo) y scripts/sync.sh (repo -> host).
+
+  Convenciones:
+  - Docs en español de México: títulos en tipo oración, comillas angulares,
+    cursivas para extranjerismos.
+  - Commits convencionales en inglés; CHANGELOG.md en español con fechas CST,
+    orden cronológico inverso.
+  - Un cambio que modifique el sistema MUST actualizar a la vez la guía en docs/
+    y la instantánea correspondiente en config/.
+  - No publicar secretos; tratar IPs, dominios y usuarios reales como datos sensibles.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing
