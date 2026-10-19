@@ -2,8 +2,9 @@
 
 ![Fedora](https://img.shields.io/badge/Fedora-Server_44-blue?logo=fedora&logoColor=white)
 ![i3wm](https://img.shields.io/badge/WM-i3-gainsboro?logo=i3&logoColor=black)
-![Warp](https://img.shields.io/badge/Terminal-Warp-01B3B3?logo=warp&logoColor=white)
-![Antigravity](https://img.shields.io/badge/IDE-Google_Antigravity_Pro-4285F4?logo=google&logoColor=white)
+![Ghostty](https://img.shields.io/badge/Terminal-Ghostty-3551F3?logo=ghostty&logoColor=white)
+![VS Code Insiders](https://img.shields.io/badge/IDE-VS_Code_Insiders-24bfa5?logo=visualstudiocode&logoColor=white)
+![Claude Code](https://img.shields.io/badge/AI-Claude_Code-D97757?logo=claude&logoColor=white)
 ![RDP](https://img.shields.io/badge/Access-RDP_Mac-success)
 ![Ultrawide](https://img.shields.io/badge/Display-32:9_Ultrawide-blueviolet)
 ![OpenSpec](https://img.shields.io/badge/Workflow-SDD_OpenSpec-orange)
@@ -19,7 +20,7 @@ El objetivo es tener un entorno de desarrollo Linux nativo que combine la estabi
 - **Base:** Fedora 44 Server (sin *bloatware* gráfico preinstalado).
 - **Entorno:** i3 Window Manager (instalación manual).
 - **Acceso:** RDP (xrdp) optimizado para clientes Mac y multimonitor.
-- **Herramientas:** Warp Terminal + Google Antigravity IDE.
+- **Herramientas:** Ghostty + VS Code Insiders + Claude Code.
 
 ## 🏗 Contexto de *hardware* e instalación
 
@@ -50,7 +51,7 @@ openspec/
 2. **Aplicar:** `/opsx:apply` implementa las tareas del cambio (docs, `config/`, *scripts*).
 3. **Archivar:** `/opsx:archive` integra los *deltas* en `openspec/specs/` y mueve el cambio a `changes/archive/`.
 
-Los comandos están disponibles en Claude Code (`/opsx:*`, en `.claude/`) y en Antigravity (`/opsx-*`, en `.agents/`).
+Los comandos `/opsx:*` están en `.claude/` y funcionan en Claude Code, tanto en la terminal como en la extensión de VS Code Insiders. Las instrucciones para agentes están en [AGENTS.md](AGENTS.md).
 
 ## 🤖 Historia de construcción con IA
 
@@ -58,7 +59,9 @@ Antes de adoptar SDD, el entorno se construyó con un flujo de trabajo asistido 
 
 1.  **Fase de construcción (Warp Terminal):** toda la instalación de paquetes, configuración inicial y borrador de documentación se realizó usando la IA de Warp.
     *   *Inversión:* ~$20 USD (1000 créditos).
-2.  **Fase de consolidación (Google Antigravity Pro):** la estructuración, corrección y expansión de esta documentación detallada se realiza utilizando el IDE Antigravity (Plan Pro).
+2.  **Fase de consolidación (Google Antigravity Pro):** la estructuración, corrección y expansión de esta documentación detallada se realizó utilizando el IDE Antigravity (Plan Pro).
+
+Con la adopción de SDD, ambas herramientas se reemplazaron por Claude Code, VS Code Insiders y Ghostty.
 
 ## ❓ ¿Por qué «artesanal»? (frente a Fedora Workstation)
 
@@ -87,7 +90,7 @@ Configuración inicial crítica para un sistema *headless*: gestión de energía
 Instalación manual de las «X» y el entorno gráfico.
 - `i3` + `i3blocks`
 - Fuentes (Nerd Fonts) y temas (Dracula)
-- Utilidades base (Thunar, xfce4-terminal)
+- Terminal Ghostty y utilidades base (Thunar, xfce4-terminal de respaldo)
 
 ### 3. [Acceso remoto (RDP)](docs/03-RDP.md)
 Configuración de `xrdp` para permitir una experiencia fluida desde macOS.
@@ -98,7 +101,7 @@ Configuración de `xrdp` para permitir una experiencia fluida desde macOS.
 ### 4. [Configuración y personalización](docs/04-Configuration.md)
 El «mojo» del sistema. Personalización visual y funcional.
 - ***Shell*:** Zsh + Oh My Zsh + Powerlevel10k.
-- **IDE:** instalación y configuración de Antigravity.
+- **IDE y asistente:** VS Code Insiders y Claude Code.
 - **Estética:** tema Dracula global.
 
 ### 5. [Mantenimiento](docs/05-Maintenance.md)
@@ -110,8 +113,9 @@ El «mojo» del sistema. Personalización visual y funcional.
 | :--- | :--- | :--- |
 | **Distro** | Fedora 44 Server | Base sólida, actualizaciones rápidas de *kernel*/paquetes. |
 | **WM** | i3 | Ligero, *tiling* perfecto para *dev*, bajo consumo en RDP. |
-| **Terminal** | Warp / xfce4 | IA integrada y *workflows* modernos. |
-| **IDE** | Antigravity | La experiencia definitiva de desarrollo asistido. |
+| **Terminal** | Ghostty / xfce4 | Rápida, nativa y configurable en texto plano; xfce4 de respaldo. |
+| **IDE** | VS Code Insiders | Últimas funciones de VS Code y extensión de Claude Code. |
+| **Asistente IA** | Claude Code | Agente en terminal e IDE; ejecuta el flujo SDD de OpenSpec. |
 | **Remoto** | Microsoft RDP (Mac) | Soporte nativo multimonitor y redirección de dispositivos. |
 
 ---

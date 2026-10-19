@@ -21,6 +21,6 @@ cp -r "$CONF_DIR/dotfiles/.config/"* ~/.config/
 echo "🖥️ Restaurando configuraciones del sistema (requiere sudo)..."
 sudo cp "$CONF_DIR/system/km-00000409.ini" /etc/xrdp/
 sudo cp "$CONF_DIR/system/sesman.ini" /etc/xrdp/
-sudo cp "$CONF_DIR/system/antigravity.repo" /etc/yum.repos.d/
+sudo cp "$CONF_DIR/system/vscode.repo" /etc/yum.repos.d/
 
 echo "✅ Sincronización completada. Es posible que necesites reiniciar i3 o xrdp."
