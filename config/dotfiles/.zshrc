@@ -121,3 +121,8 @@ alias ll='ls -lah'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias c='clear'
+
+# Miniconda (only if installed)
+[[ -f ~/miniconda3/etc/profile.d/conda.sh ]] && source ~/miniconda3/etc/profile.d/conda.sh
+
+alias reloadbg='~/.fehbg'
