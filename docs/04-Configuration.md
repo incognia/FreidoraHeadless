@@ -67,31 +67,101 @@ pkill xss-lock; i3-msg reload
 
 ## 3. Configuración de la barra (i3blocks)
 
-Crear `~/.config/i3blocks/config`. Este archivo define los *widgets* de la barra superior.
+Crear `~/.config/i3blocks/config`. Este archivo define los bloques de la barra superior, con los colores de Dracula.
 
 ```bash
 mkdir -p ~/.config/i3blocks
 cat > ~/.config/i3blocks/config << 'EOF'
-# Configuración simplificada de ejemplo
-[time]
-command=date "+%Y-%m-%d %H:%M:%S"
-interval=1
+# i3blocks: Dracula status bar (FreidoraHeadless)
+#
+# Every block uses an inline command: Fedora's i3blocks package ships no
+# blocklets in /usr/share/i3blocks.
+
+separator_block_width=12
+markup=pango
+
+[ghostty]
+full_text= Ghostty
+command=setsid ghostty >/dev/null 2>&1
+color=#50FA7B
+separator=false
+
+[vscode]
+full_text= Code
+command=setsid code-insiders >/dev/null 2>&1
+color=#50FA7B
+
+[public-ip]
+label= 
+command=curl -4 -s ifconfig.me
+color=#6272A4
+interval=once
+separator=false
 
 [ip_local]
-command=hostname -I | awk '{print "Local: " $1}'
+label= 
+command=hostname -I | awk '{print $1}'
+color=#6272A4
 interval=60
 
-[user]
-command=echo "User: $USER"
-interval=once
+[cpu_usage]
+label= 
+command=top -bn1 | awk '/^%Cpu/ {printf "%.0f%%\n", 100 - $8}'
+color=#F1FA8C
+interval=10
+separator=false
 
-[disconnect]
-full_text=🛑 Disconnect
-command=pkill -u $USER Xvnc
-color=#FF6666
+[load_average]
+label= 
+command=cut -d' ' -f1 /proc/loadavg
+color=#F1FA8C
+interval=10
+separator=false
+
+[temperature]
+label= 
+command=for h in /sys/class/hwmon/hwmon*; do [ "$(cat "$h/name")" = k10temp ] && awk '{printf "%.0f°C\n", $1 / 1000}' "$h/temp1_input"; done
+color=#F1FA8C
+interval=10
+
+[memory]
+label= 
+command=free -h | awk '/^Mem/ {print $3 "/" $2}'
+color=#FFB86C
+interval=30
+separator=false
+
+[swap]
+label= 
+command=free -h | awk '/^Swap/ {print $3 "/" $2}'
+color=#FFB86C
+interval=30
+
+[disk]
+label= 
+command=df -h / | awk 'NR == 2 {print $4}'
+color=#FF79C6
+interval=30
+
+[time]
+command=date '+%D %T'
+color=#BD93F9
+interval=5
+separator=false
+
+[weather]
+label=☀️ 
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | tail -1 | xargs echo
+color=#BD93F9
+interval=3600
+
+[restart]
+full_text=⏻ 
+command=i3-msg -q restart
+color=#F8F8F2
 EOF
 ```
-> **Nota:** puedes expandir esta configuración con íconos de Nerd Fonts como se detalla en guías avanzadas.
+> **Nota:** el paquete `i3blocks` de Fedora no incluye los *blocklets* de `/usr/share/i3blocks`, así que cada bloque usa un comando propio. Los íconos requieren la Nerd Font de la guía 02. A la izquierda quedan los lanzadores de Ghostty y VS Code Insiders, que se abren con un clic.
 
 ## 4. Configuración de terminal (xfce4-terminal)
 
@@ -113,16 +183,63 @@ Configurar `dunst` con tema Dracula, sin bordes y títulos con acento green:
 mkdir -p ~/.config/dunst
 cat > ~/.config/dunst/dunstrc << 'EOF'
 [global]
+    # Display
+    monitor = 0
+    follow = mouse
+    
+    # Geometry
     width = 350
     height = (0, 100)
     origin = top-right
     offset = (20, 50)
+    
+    # Progress bar
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    
+    # Appearance - Dracula
+    transparency = 0
+    separator_height = 2
+    padding = 12
+    horizontal_padding = 12
     frame_width = 0
     separator_color = "#44475a"
     corner_radius = 8
+    
+    # Font
     font = AdwaitaMono Nerd Font 9
-format = "<b><span foreground='#50fa7b'>%s</span></b>\n%b"
+    line_height = 0
+    markup = full
+    format = "<b><span foreground='#50fa7b'>%s</span></b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    
+    # Behavior
+    show_age_threshold = 60
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+    
+    # Icons
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 64
+    
+    # History
+    sticky_history = yes
+    history_length = 20
+    
+    # Mouse
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
 
+# Dracula Theme
 [urgency_low]
     background = "#282a36"
     foreground = "#6272a4"
