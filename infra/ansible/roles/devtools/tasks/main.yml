@@ -3,11 +3,13 @@
   community.general.copr:
     name: scottames/ghostty
     state: enabled
+  register: freidora_devtools_copr
 
 - name: Import Microsoft signing key
   ansible.builtin.rpm_key:
     key: https://packages.microsoft.com/keys/microsoft.asc
     state: present
+  register: freidora_devtools_key
 
 - name: Deploy VS Code repository from config/system (gpgcheck=1)
   ansible.builtin.copy:
@@ -16,6 +18,21 @@
     owner: root
     group: root
     mode: "0644"
+  register: freidora_devtools_repo
+
+# In check mode the repositories above are not really added, so their
+# packages cannot be queried or installed yet.
+- name: Note repositories pending in check mode
+  ansible.builtin.set_fact:
+    freidora_devtools_repos_pending: >-
+      {{ ansible_check_mode and (freidora_devtools_copr is changed
+         or freidora_devtools_key is changed
+         or freidora_devtools_repo is changed) }}
+
+- name: Warn that package checks are skipped
+  ansible.builtin.debug:
+    msg: "Check mode: Ghostty and VS Code repositories are not configured yet; package checks skipped."
+  when: freidora_devtools_repos_pending
 
 - name: Check packages exist for this architecture
   ansible.builtin.command:
@@ -24,6 +41,7 @@
   register: freidora_devtools_query
   changed_when: false
   check_mode: false
+  when: not freidora_devtools_repos_pending
 
 - name: Fail clearly on missing packages
   ansible.builtin.fail:
@@ -31,12 +49,15 @@
   loop: "{{ freidora_devtools_query.results }}"
   loop_control:
     label: "{{ item.item }}"
-  when: item.stdout | trim | length == 0
+  when:
+    - not freidora_devtools_repos_pending
+    - item.stdout | trim | length == 0
 
 - name: Install Ghostty and VS Code Insiders
   ansible.builtin.dnf:
     name: "{{ freidora_devtools_packages }}"
     state: present
+  when: not freidora_devtools_repos_pending
 
 - name: Create Ghostty config directory
   ansible.builtin.file:
@@ -54,18 +75,24 @@
     group: "{{ freidora_user }}"
     mode: "0644"
 
+- name: Check whether VS Code Insiders is installed
+  ansible.builtin.stat:
+    path: /usr/bin/code-insiders
+  register: freidora_vscode_bin
+
 - name: List VS Code Insiders extensions
   ansible.builtin.command: code-insiders --list-extensions
   register: freidora_vscode_installed
   changed_when: false
   check_mode: false
+  when: freidora_vscode_bin.stat.exists
   become: true
   become_user: "{{ freidora_user }}"
 
 - name: Install VS Code Insiders extensions
   ansible.builtin.command: code-insiders --install-extension {{ item }}
   loop: "{{ freidora_vscode_extensions }}"
-  when: item | lower not in (freidora_vscode_installed.stdout | lower).splitlines()
+  when: item | lower not in (freidora_vscode_installed.stdout | default('') | lower).splitlines()
   become: true
   become_user: "{{ freidora_user }}"
 
