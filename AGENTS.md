@@ -6,7 +6,7 @@ Instrucciones para agentes de IA que trabajan en este repositorio.
 
 FreidoraHeadless documenta y versiona una estación de desarrollo *headless* sobre **Fedora 44 Server** (host `tsibi`, bare metal x86_64), accesible por RDP (xrdp + Xvnc) desde macOS y Linux, con i3, tema Dracula y Zsh + Powerlevel10k.
 
-El entregable principal es la **documentación**. No hay código de aplicación. La infraestructura como código de `infra/` (Ansible y Terraform) automatiza las guías; valídala con `terraform validate` y `ansible-playbook --syntax-check`, y contra la VM, nunca contra el servidor real.
+El entregable principal es la **documentación**. No hay código de aplicación. La infraestructura como código de `infra/` (Ansible y Terraform) automatiza las guías; valídala con `terraform validate` y `ansible-playbook --syntax-check`. Desarrolla y prueba los cambios de `infra/` en la VM, nunca usando `tsibi` como banco de pruebas.
 
 ## Estructura
 
@@ -38,6 +38,7 @@ Las correcciones menores de documentación (erratas, enlaces, estilo) no necesit
 
 - **Docs y `config/` van juntos.** Un cambio en el sistema actualiza en el mismo commit la guía de `docs/` y la copia correspondiente en `config/`. Si alguno de los dos se queda atrás, se desfasan.
 - **No ejecutes nada contra `tsibi`** ni scripts con `sudo` sin que el usuario lo pida. Las tareas en el host las hace el usuario.
+- **Ansible en `tsibi`:** solo se aplica lo que ya pasó por la VM. Primero `--check --diff`, que se revisa con el usuario, y después la aplicación real, únicamente con su autorización explícita.
 - **Datos sensibles.** No añadas secretos. Trata IPs, dominios, puertos expuestos y nombres de usuario reales como sensibles: usa marcadores en ejemplos nuevos.
 - **Seguridad.** No añadas repositorios con `gpgcheck=0` ni servicios expuestos a Internet sin advertirlo explícitamente.
 
