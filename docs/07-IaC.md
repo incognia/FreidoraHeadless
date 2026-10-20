@@ -98,6 +98,12 @@ cp infra/ansible/inventories/baremetal/hosts.yml.example infra/ansible/inventori
 
 Rellena la IP, el usuario, la llave, el *hostname* y la red estática. No definas `freidora_user_password_hash`: así el *playbook* no toca la contraseña del servidor.
 
+El modo `--check` del módulo `dnf` necesita `python3-libdnf5`, que Fedora Server no trae (la imagen Cloud de la VM sí). Instálalo una vez en el servidor:
+
+```bash
+sudo dnf install -y python3-libdnf5
+```
+
 ## 4. Ejecutar el *playbook*
 
 ```bash
