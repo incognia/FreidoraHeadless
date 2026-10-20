@@ -34,11 +34,11 @@
 
 ## 6. Bare metal (manual, en tsibi)
 
-- [ ] 6.1 Ejecutar `scripts/backup.sh` en `tsibi` y hacer commit del estado real
-- [ ] 6.2 Ejecutar el *playbook* contra `tsibi` con `--check --diff`; revisar que no hay diferencias inesperadas
+- [x] 6.1 Reconciliar `config/` con el estado real de `tsibi` y hacer commit (en lugar de `scripts/backup.sh`, para dejar fuera los *alias* de VPN de otro desarrollo y combinar las dos barras de i3blocks)
+- [x] 6.2 Ejecutar el *playbook* contra `tsibi` con `--check --diff`; revisar que no hay diferencias inesperadas
 - [ ] 6.3 Aplicar el *playbook* a `tsibi` y verificar sesión RDP y `changed=0` en una segunda ejecución
 
 ## 7. Documentación
 
 - [x] 7.1 Crear `docs/07-IaC.md` (requisitos del Mac, ciclo de vida de la VM, uso del *playbook* en ambos destinos, `--check --diff` obligatorio en bare metal)
-- [ ] 7.2 Actualizar `README.md` (guía 07, VM como alternativa a bare metal, Terraform y Ansible en el *stack*) y `CHANGELOG.md`
+- [x] 7.2 Actualizar `README.md` (guía 07, VM como alternativa a bare metal, Terraform y Ansible en el *stack*) y `CHANGELOG.md`

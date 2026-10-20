@@ -1,5 +1,15 @@
 # Changelog
 
+## [2026-10-20] - Reconciliación de «config/» con tsibi y ajustes del playbook
+
+- docs: marcar como completadas las tareas 6.1, 6.2 y 7.2 del cambio add-iac-provisioning (reconciliación de «config/» con el estado real de tsibi y ejecución del *playbook* con `--check --diff`)
+- docs: precisar en AGENTS.md que los cambios de «infra/» se prueban en la VM y que Ansible solo se aplica en tsibi tras `--check --diff` revisado con el usuario y con su autorización explícita
+- docs: documentar en la guía 07 la instalación de «python3-libdnf5» en el servidor para que el modo `--check` del módulo `dnf` funcione
+- fix: omitir en modo `--check` las comprobaciones de paquetes de Ghostty y VS Code Insiders cuando sus repositorios aún no están configurados, y las extensiones si el editor no está instalado
+- fix: ignorar el DNS automático en la conexión estática (`dns4_ignore_auto`) y no actualizar los clones existentes de Oh My Zsh, Powerlevel10k y *plugins*
+- docs: actualizar la guía 04 con la barra de i3blocks con colores de Dracula y la configuración completa de dunst
+- feat: reconciliar en «config/» los *dotfiles* con el estado real de tsibi (tema Dracula en GTK2/3/4 y `qt5ct` en «.xsession», barra de i3blocks, dunst, `smart_gaps off`, `tray_padding`, xss-lock desactivado, alias `reloadbg` y Miniconda opcional en «.zshrc»)
+
 ## [2026-10-19] - Adopción de desarrollo guiado por especificaciones (SDD)
 
 - docs: registrar en el cambio de OpenSpec add-iac-provisioning los resultados de la prueba técnica (hallazgos de libvirt en macOS, HVF y xrdp), el requisito de contraseña opcional para RDP con Xvnc como única sesión y el avance de tareas (20 de 24)
