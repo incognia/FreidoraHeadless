@@ -9,12 +9,15 @@
     name: "{{ freidora_user }}"
     shell: /usr/bin/zsh
 
+# Versions are pinned for fresh installs only: existing clones are left
+# alone, so Oh My Zsh's own updater is never rolled back.
 - name: Clone Oh My Zsh, Powerlevel10k and plugins
   ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "{{ freidora_home }}/{{ item.dest }}"
     version: "{{ item.version }}"
     depth: 1
+    update: false
   loop:
     - { repo: https://github.com/ohmyzsh/ohmyzsh.git, dest: .oh-my-zsh, version: "{{ freidora_ohmyzsh_version }}" }
     - { repo: https://github.com/romkatv/powerlevel10k.git, dest: powerlevel10k, version: "{{ freidora_p10k_version }}" }

@@ -26,6 +26,7 @@
     ip4: "{{ freidora_network.address }}"
     gw4: "{{ freidora_network.gateway }}"
     dns4: "{{ freidora_network.dns }}"
+    dns4_ignore_auto: true
     dns4_search: "{{ [freidora_network.dns_search] }}"
     method6: disabled
     state: present
